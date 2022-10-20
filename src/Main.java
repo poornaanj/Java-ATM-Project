@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        User user1 = new User(1234,123);
+        User user1 = new User(1234,123,1000);
         Operations operation = new Operations();
         double input;
 
@@ -25,7 +25,7 @@ public class Main {
             System.out.println("Login Successful");
             System.out.println("----------------");
             while(true){
-                var answer = mainMenu();
+                var answer = ATMMenu.mainMenu();
                 switch (answer){
                     case 1:
                         System.out.println("Your balance is " + operation.getBalance());
@@ -51,36 +51,5 @@ public class Main {
         else
             System.out.println("Invalid login : Account Number or Pin Number is not correct");
     }
-    public static int mainMenu(){
-        System.out.println();
-        System.out.println("Please select what to proceed with");
-        System.out.println("1 - Check Balance");
-        System.out.println("2 - Deposit Money");
-        System.out.println("3 - Withdraw Money");
-        System.out.println("4 - Exit");
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter you input : ");
-        var input = scanner.nextInt();
-        return input;
-    }
 
-    public static double deposit(double amount, double balance){
-        balance += amount;
-        System.out.println("Deposit successful");
-        System.out.println("Your new account balance is "+ getBalance(balance));
-        return balance;
-    }
-
-    public static double withdraw(double amount, double balance){
-        balance -= amount;
-        System.out.println("Withdraw successful");
-        System.out.println("Your new account balance is "+ getBalance(balance));
-        return balance;
-
-    }
-
-    public static String  getBalance(double balance){
-        var formattedBalance = NumberFormat.getCurrencyInstance(Locale.US).format(balance);
-        return formattedBalance;
-    }
 }
