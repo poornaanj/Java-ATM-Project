@@ -1,13 +1,10 @@
-import java.text.NumberFormat;
-import java.util.Locale;
 import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
         User user1 = new User(1234,123,1000);
-        Operations operation = new Operations();
+        bankingFunctions operation = new bankingFunctions(user1.getBalance());
         double input;
 
         Scanner scanner = new Scanner(System.in);

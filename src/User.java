@@ -17,12 +17,9 @@ public class User {
     public double getBalance(){
         return balance;
     }
-
-
     public int getPin() {
         return pin;
     }
-
     public int getAccountNumber() {
         return accountNumber;
     }

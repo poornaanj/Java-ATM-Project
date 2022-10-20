@@ -1,8 +1,12 @@
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class Operations {
+public class bankingFunctions {
     private double balance;
+
+    public bankingFunctions(double balance){
+        this.balance = balance;
+    }
 
     public void deposit(double amount){
         balance += amount;
