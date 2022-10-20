@@ -1,41 +1,30 @@
-import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
 
         User user1 = new User(1234,123,1000);
         bankingFunctions operation = new bankingFunctions(user1.getBalance());
-        double input;
 
-        Scanner scanner = new Scanner(System.in);
+        ATMMenu.welcomeScreen();
 
-        System.out.println("Welcome to the ATM");
-        System.out.println("-------------------");
-        System.out.println();
-        System.out.print("Enter your Account Number : ");
-        var loginAccount = scanner.nextInt();
-        System.out.print("Enter your Pin Number : ");
-        var loginPin = scanner.nextInt();
+        var loginAccount = (int) Console.readInput("Enter your Account Number");
+        var loginPin = (int)Console.readInput("Enter your Pin Number");
 
         if(loginAccount== user1.getAccountNumber() && loginPin== user1.getPin()){
-            System.out.println();
-            System.out.println("Login Successful");
-            System.out.println("----------------");
+            ATMMenu.loginSuccessScreen();
+
             while(true){
-                var answer = ATMMenu.mainMenu();
+                ATMMenu.functionsMenu();
+                var answer = (int)Console.readInput("Enter your response");
                 switch (answer){
                     case 1:
                         System.out.println("Your balance is " + operation.getBalance());
                         continue;
                     case 2:
-                        System.out.print("Enter the amount you want to deposit : ");
-                        input = scanner.nextDouble();
-                        operation.deposit(input);
+                        operation.deposit(Console.readInput("Enter the amount you want to deposit"));
                         continue;
                     case 3:
-                        System.out.print("Enter the amount you want to withdraw : ");
-                        input = scanner.nextDouble();
-                        operation.withdraw(input);
+                        operation.withdraw(Console.readInput("Enter the amount you want to withdraw"));
                         continue;
                     case 4:
                         System.out.println("Thank you, have a nice day");
