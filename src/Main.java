@@ -6,9 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int accountNumber = 1234;
-        int pinNumber = 123;
-        double balance = 0;
+        User user1 = new User(1234,123);
+        Operations operation = new Operations();
         double input;
 
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class Main {
         System.out.print("Enter your Pin Number : ");
         var loginPin = scanner.nextInt();
 
-        if(loginAccount==accountNumber && loginPin==pinNumber){
+        if(loginAccount== user1.getAccountNumber() && loginPin== user1.getPin()){
             System.out.println();
             System.out.println("Login Successful");
             System.out.println("----------------");
@@ -29,17 +28,17 @@ public class Main {
                 var answer = mainMenu();
                 switch (answer){
                     case 1:
-                        System.out.println("Your balance is " + getBalance(balance));
+                        System.out.println("Your balance is " + operation.getBalance());
                         continue;
                     case 2:
                         System.out.print("Enter the amount you want to deposit : ");
                         input = scanner.nextDouble();
-                        balance = deposit(input,balance);
+                        operation.deposit(input);
                         continue;
                     case 3:
                         System.out.print("Enter the amount you want to withdraw : ");
                         input = scanner.nextDouble();
-                        balance = withdraw(input,balance);
+                        operation.withdraw(input);
                         continue;
                     case 4:
                         System.out.println("Thank you, have a nice day");

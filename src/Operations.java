@@ -2,18 +2,18 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Operations {
-
-    User user1 = new User(1234,123);
-    private double balance = user1.getBalance();
+    private double balance;
 
     public void deposit(double amount){
         balance += amount;
         System.out.println("Deposit successful");
+        System.out.println("Your new balance is "+ getBalance());
     }
 
     public void withdraw(double amount){
         balance -= amount;
         System.out.println("Withdraw successful");
+        System.out.println("Your new balance is "+ getBalance());
     }
 
     public String getBalance(){
