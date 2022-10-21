@@ -4,7 +4,7 @@ import java.util.Map;
 public class ATMOperation {
 
 
-    public static void atmOperation() {
+    public void atmOperation() {
         User user1 = new User(1234, 123, 1000);
         User user2 = new User(2345, 234);
         User user3 = new User(3456, 345, 500);
