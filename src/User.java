@@ -1,5 +1,10 @@
 public class User {
 
+    /*
+    This class defines the account holder of the bank.
+    Each customer has an account no,pin, savings account balance and mobile account balance
+     */
+
     private int accountNumber;
     private int pin;
     private double savingsBalance;

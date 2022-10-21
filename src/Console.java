@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 public class Console {
 
+    // This class is to take the inputs from the user
     private static Scanner scanner = new Scanner(System.in);
 
+    /* readInput is an overridden method which is used to take input.
+    Both implementations return a double value
+    Second implementation has min and max value. It will loop until the input is in valid range.
+     */
     public static double readInput(String message){
         double input = 0;
         try{

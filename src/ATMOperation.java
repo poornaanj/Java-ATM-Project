@@ -14,7 +14,6 @@ public class ATMOperation {
             User currentCustomer = identifyCurrentCustomer(loginAccount);
             if(currentCustomer.getPin()==loginPin){
                 ATMMenu.loginSuccessScreen();
-                ATMMenu.accountMenu();
                 accountSelection(currentCustomer);
             }
             else
@@ -44,10 +43,10 @@ public class ATMOperation {
         return null;
     }
 
-    /*This method defines the account selection and point to account operations
-    in selected account
-     */
+    /*This method defines the selection of account to do the
+    transaction */
     private void accountSelection(User customer){
+        ATMMenu.accountMenu();
         var selectedAccount = (int)Console.readInput("Enter your response : ",1,3);
         Account account;
         switch (selectedAccount){
@@ -67,6 +66,8 @@ public class ATMOperation {
         }
     }
 
+    /*This method defines different transaction operations
+     */
     private void bankingOperation(Account account) {
         while (true) {
             ATMMenu.functionsMenu();

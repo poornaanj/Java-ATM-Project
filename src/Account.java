@@ -8,6 +8,7 @@ public class Account {
         this.balance = balance;
     }
 
+    //This method performs money deposit function
     public void deposit(double amount){
         balance += amount;
         System.out.println();
@@ -15,6 +16,7 @@ public class Account {
         System.out.println("Your new balance is "+ getBalance());
     }
 
+    //This method is for money withdraw function
     public void withdraw(double amount){
         if(amount<=balance){
             balance -= amount;
@@ -29,6 +31,7 @@ public class Account {
         }
     }
 
+    //Account balance is formatted to represent as a $ value
     public String getBalance(){
         var formattedBalance = NumberFormat.getCurrencyInstance(Locale.US).format(balance);
         return formattedBalance;

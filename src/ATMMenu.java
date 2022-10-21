@@ -1,5 +1,8 @@
 public class ATMMenu {
 
+    /*This class contains the methods which display different menus
+    and messages in the ATM screen */
+
     public static void welcomeScreen(){
         System.out.println("Welcome to the ATM");
         System.out.println("-------------------");
