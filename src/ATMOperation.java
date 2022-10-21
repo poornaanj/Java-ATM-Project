@@ -11,11 +11,11 @@ public class ATMOperation {
         var loginPin = (int) Console.readInput("Enter your Pin Number");
 
         if (isTrueCustomer(loginAccount)) {
-            User customer=identifyCurrentCustomer(loginAccount);
-            if(customer.getPin()==loginPin){
+            User currentCustomer = identifyCurrentCustomer(loginAccount);
+            if(currentCustomer.getPin()==loginPin){
                 ATMMenu.loginSuccessScreen();
-                bankingFunctions newCustomer = new bankingFunctions(customer.getBalance());
-                bankingOperation(newCustomer);
+                ATMMenu.accountMenu();
+                accountSelection(currentCustomer);
             }
             else
                 ATMMenu.invalidLogin();
@@ -24,25 +24,16 @@ public class ATMOperation {
         }
     }
 
-    private Map<User,Integer> userDirectory(){
-        User user1 = new User(1234, 123, 1000);
-        User user2 = new User(2345, 234);
-        User user3 = new User(3456, 345, 500);
-
-        Map<User, Integer> users = new HashMap<>();
-
-        users.put(user1, user1.getAccountNumber());
-        users.put(user2, user2.getAccountNumber());
-        users.put(user3, user3.getAccountNumber());
-
-        return users;
-    }
-
+    /* This method identify whether the entered account number
+    is in the account directory and return true if is available */
     private boolean isTrueCustomer(int loginAccount){
         var users = userDirectory();
         return users.containsValue(loginAccount);
     }
 
+    /*This method  identifies who is the user according to the entered
+    account number and return the user object
+     */
     private User identifyCurrentCustomer(int loginAccount) {
         var users = userDirectory();
         for (var current : users.entrySet()) {
@@ -53,19 +44,42 @@ public class ATMOperation {
         return null;
     }
 
-    private void bankingOperation(bankingFunctions newCustomer) {
+    /*This method defines the account selection and point to account operations
+    in selected account
+     */
+    private void accountSelection(User customer){
+        var selectedAccount = (int)Console.readInput("Enter your response : ",1,3);
+        Account account;
+        switch (selectedAccount){
+            case 1:
+                account = new Account(customer.getSavingsBalance());
+                bankingOperation(account);
+                break;
+            case 2:
+                account = new Account(customer.getMobileBalance());
+                bankingOperation(account);
+                break;
+            case 3:
+                System.out.println("Thank you, have a nice day !!");
+                return;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+    private void bankingOperation(Account account) {
         while (true) {
             ATMMenu.functionsMenu();
-            var answer = (int) Console.readInput("Enter your response");
+            var answer = (int) Console.readInput("Enter your response",1,4);
             switch (answer) {
                 case 1:
-                    System.out.println("Your balance is " + newCustomer.getBalance());
+                    System.out.println("Your balance is " + account.getBalance());
                     continue;
                 case 2:
-                    newCustomer.deposit(Console.readInput("Enter the amount you want to deposit"));
+                    account.deposit(Console.readInput("Enter the amount you want to deposit"));
                     continue;
                 case 3:
-                    newCustomer.withdraw(Console.readInput("Enter the amount you want to withdraw"));
+                    account.withdraw(Console.readInput("Enter the amount you want to withdraw"));
                     continue;
                 case 4:
                     System.out.println("Thank you, have a nice day !!");
@@ -74,6 +88,21 @@ public class ATMOperation {
                     System.out.println("Invalid input");
             }
         }
+    }
+
+    //This method returns the user directory Map
+    private Map<User,Integer> userDirectory(){
+        User user1 = new User(1234, 123, 1000,1000);
+        User user2 = new User(2345, 234);
+        User user3 = new User(3456, 345, 500,0);
+
+        Map<User, Integer> users = new HashMap<>();
+
+        users.put(user1, user1.getAccountNumber());
+        users.put(user2, user2.getAccountNumber());
+        users.put(user3, user3.getAccountNumber());
+
+        return users;
     }
 
 }

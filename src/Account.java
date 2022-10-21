@@ -1,10 +1,10 @@
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class bankingFunctions {
+public class Account {
     private double balance;
 
-    public bankingFunctions(double balance){
+    public Account(double balance){
         this.balance = balance;
     }
 
