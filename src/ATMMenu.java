@@ -20,4 +20,10 @@ public class ATMMenu {
         System.out.println("3 - Withdraw Money");
         System.out.println("4 - Exit");
     }
+
+    public static void invalidLogin(){
+        System.out.println("Invalid login : Account Number or Pin Number is not correct");
+    }
+
+
 }

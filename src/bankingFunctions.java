@@ -10,14 +10,23 @@ public class bankingFunctions {
 
     public void deposit(double amount){
         balance += amount;
-        System.out.println("Deposit successful");
+        System.out.println();
+        System.out.println("------Deposit successful------");
         System.out.println("Your new balance is "+ getBalance());
     }
 
     public void withdraw(double amount){
-        balance -= amount;
-        System.out.println("Withdraw successful");
-        System.out.println("Your new balance is "+ getBalance());
+        if(amount<=balance){
+            balance -= amount;
+            System.out.println();
+            System.out.println("------Withdraw successful-----");
+            System.out.println("Your new balance is "+ getBalance());
+        }
+        else{
+            System.out.println();
+            System.out.println("----------------Withdraw unsuccessful----------------");
+            System.out.println("Your account balance is less than the withdraw amount ");
+        }
     }
 
     public String getBalance(){
